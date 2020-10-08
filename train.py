@@ -43,10 +43,15 @@ def clean_data(data):
     x_df["poutcome"] = x_df.poutcome.apply(lambda s: 1 if s == "success" else 0)
 
     y_df = x_df.pop("y").apply(lambda s: 1 if s == "yes" else 0)
+
+    # This function needs to return x_df and y_df data frames
     return x_df, y_df
     
 
 def main():
+    
+    # This statement was moved here because a function call can only be after the 
+    # function definition in Python.
     x, y = clean_data(ds)
 
     # TODO: Split data into train and test sets.
@@ -54,7 +59,7 @@ def main():
     x_train, x_test, y_train, y_test = train_test_split(x, y)
 
     run = Run.get_context()
-    
+
     # Add arguments to script
     parser = argparse.ArgumentParser()
 
