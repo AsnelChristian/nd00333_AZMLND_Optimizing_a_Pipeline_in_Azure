@@ -10,18 +10,18 @@ This model is then compared to an Azure AutoML run.
 
 This dataset contains data about a marketing campaign initiated by a bank, several information about the customers that
 were reached out concerning the campaign are provided, information like when last they were contacted, how long the 
-conversation lasted, their marital status etc... With this data we seek to predict how likely the customer are to
+conversation lasted, their marital status etc... With this data we seek to predict how likely the customers are to
 subscribe to the product being advertised.
 
 **In 1-2 sentences, explain the solution: e.g. "The best performing model was a ..."**
 The best performing model was the VotingEnsemble classification algorithm: with 91.5% accuracy. AutoML, after running several
-algorithm this one has the best accuracy, better the scikit-learn LogicRegression which has a 90.1% accuracy.
+algorithms this one has the best accuracy, better than the tuned (hyperparemeter tuning) scikit-learn LogicRegression algorithm which only attains a 91.28983308042489% accuracy.
 
 ## Scikit-learn Pipeline
 **Explain the pipeline architecture, including data, hyperparameter tuning, and classification algorithm.**
 We use the LogicRegression algorithm provided by scikit-learn to train and test the data. To accomplish this
 - We first clean the data and extract the label into a different dataframe.
-- We split the data into the test and training samples
+- We split the data into the test and training samples (20% used for training and 80% for testing)
 - We setup hyperparameter tuning to determine the best possible value for the ``inverse of regularization strength`` parameter of the logic regression algorithm from the uniform space between 0.5 and 2.0
 - We setup the hyperparameter tuning to stop  
 
@@ -40,13 +40,18 @@ Voting Ensemble (which is our case) the predictions made correspond to the major
 
 ## Pipeline comparison
 **Compare the two models and their performance. What are the differences in accuracy? In architecture? If there was a difference, why do you think there was one?**
-The hyperparemeter tuning fails to run for some reason.
+The hyperparemeter tuning and automl are quite different. 
+
+AutoML is much more powerful because it runs a great variety of models and picks the best performing one (in only one pipeline run), whereas hyperparemeter tries to squeeze out only a single model to get the best possible run for it given some metrics, basically you would have to run hyperparemeter tuning for all the models ran by automl one after the other and then compare their results to achieve what autoML does with hyperparemeter tuning. 
+
+In conclusion hyperparemeter tuning can be the way to go when you are sure that the model you are picking is the best option, otherwise autoMl proves to be a good approach.
 
 ## Future work
 **What are some areas of improvement for future experiments? Why might these improvements help the model?**
 To improve on the model some more data cleaning could be done. Based on the importance of each column in the decision making
-of the best performing model, we could remove those that do not really affect it. 
+of the best performing model, we could remove those that do not really affect it.  
 
 ## Proof of cluster clean up
 **If you did not delete your compute cluster in the code, please complete this section. Otherwise, delete this section.**
 **Image of cluster marked for deletion**
+The compute cluster was deleted in the code: ```compute_cluster.delete() ```
