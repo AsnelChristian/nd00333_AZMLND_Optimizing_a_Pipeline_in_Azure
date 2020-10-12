@@ -18,6 +18,7 @@ The best performing model was the VotingEnsemble classification algorithm: with 
 
 ## Scikit-learn Pipeline
 **Explain the pipeline architecture, including data, hyperparameter tuning, and classification algorithm.**
+![Hyperparameter tuning archictecture](./Hyper_tuning_architecture.png)
 We use the LogicRegression algorithm provided by scikit-learn to train and test the data. To accomplish this
 - We first clean the data and extract the label into a different dataframe.
 - We split the data into the test and training samples (20% used for training and 80% for testing)
@@ -40,6 +41,10 @@ The VotingEnsemble model is a machine learning model that uses several other mod
 
 ## Pipeline comparison
 **Compare the two models and their performance. What are the differences in accuracy? In architecture? If there was a difference, why do you think there was one?**
+
+![Automated ML pipeline archictecture](./AutoML_architecture.png)
+
+
 The hyperparemeter tuning and automl are quite different. 
 
 AutoML is much more powerful because it runs a great variety of models and picks the best performing one (in only one pipeline run), whereas hyperparemeter tries to squeeze out only a single model to get the best possible run for it given some metrics, basically you would have to run hyperparemeter tuning for all the models ran by automl one after the other and then compare their results to achieve what autoML does with hyperparemeter tuning.
